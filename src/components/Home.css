@@ -1,0 +1,38 @@
+.container {
+	border: solid red 1px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 20vh;
+
+
+}
+
+.pepe {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+
+.albums {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding-left: 20px;
+
+
+}
+
+
+
+.songs {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
