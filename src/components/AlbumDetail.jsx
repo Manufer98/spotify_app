@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { AddTop5Redux } from '../redux/top5Sclice';
+
+
 import './AlbumsDetail.css';
 
 const AlbumDetail = () => {
 	const ClientId = '186edb51b04148d99e7c55ed02ebc0fa';
 	const ClientSecret = '24db6b43a228490f81bdada8879ec536';
 	const {id} = useParams();
+	let { state } = useLocation();
+	const artist=state.artist;
 	const [token, setToken] = useState('');
 	const artistID = id.split("-")[0];
 	const albumId = id.split("-")[1];
@@ -79,6 +83,7 @@ const AlbumDetail = () => {
 	  } 
 
 	  const handleTop5 = (song)=>{
+		
 
 		const songi={
 			id:song.id,
@@ -86,7 +91,7 @@ const AlbumDetail = () => {
 		}
 
 		dispatch(AddTop5Redux(songi));
-        navigate('/');
+       // navigate('/Artist/'+artist.id);
 	  }
 
 	
@@ -101,7 +106,8 @@ const AlbumDetail = () => {
 				  {album.songs && album.songs.map((song) =>
 					<div key={song.id} className="songs">
 					  <p>{song.name}</p>
-					  <button onClick={()=> handleTop5(song)}>+</button>
+					  <button onClick={()=> handleTop5(song)}><Link className="link" to={"/Artist/"+artist.id} state={{artist}}>+</Link></button>
+					   {/* <button onClick={()=> handleTop5(song)} >+</button>  */}
   
   
 					</div>

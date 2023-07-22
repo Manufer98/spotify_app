@@ -1,0 +1,119 @@
+.top5_container {
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 50px;
+	height: 10px;
+	padding-top: 150px;
+	/* background-color: rgb(228, 206, 250); */
+
+}
+
+.top5_sep {
+	flex-direction: row;
+	gap: 5rem;
+}
+
+.top5_subcontainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+
+.top5_carrousel {
+	height: 400px;
+	width: 400px;
+	margin-bottom: 10px;
+
+}
+
+.top5_carrouselInner {
+	height: 100%;
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+
+
+	.left {
+		flex: 1%;
+		height: 100%;
+		background-color: rgb(26, 23, 23, 0.2);
+		display: grid;
+		place-items: center;
+
+		cursor: pointer;
+
+	}
+
+	.center {
+		flex: 80%;
+		height: 100%;
+
+	}
+
+	.right {
+		flex: 1%;
+		height: 100%;
+		background-color: rgb(26, 23, 23, 0.2);
+		display: grid;
+		place-items: center;
+
+
+		cursor: pointer;
+
+
+	}
+
+
+}
+
+.top5_link {
+	margin-bottom: 40px;
+
+}
+
+.top5_circulos {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 400px;
+}
+
+
+
+/*
+
+.top5_pepe {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+
+.top5_albums {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding-left: 20px;
+
+
+}
+
+
+
+.top5_songs {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+} */
