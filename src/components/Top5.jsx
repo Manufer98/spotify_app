@@ -1,6 +1,12 @@
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Brightness1Icon from '@mui/icons-material/Brightness1';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
+import { changeStatus, currArtist } from '../redux/top5Sclice';
+
+import StatusSongs from './StatusSongs';
 import "./Top5.css";
 const Home = () => {
 	const ClientId = '186edb51b04148d99e7c55ed02ebc0fa';
@@ -11,9 +17,13 @@ const Home = () => {
 	const [artists, setArtists] = useState([]);
 	const [search, setSearch] = useState('');
 	const [searchArtist, setSearchArtist] = useState('');
-	const[artistID,setArtistID]=useState('');
+	const [artistID,setArtistID]=useState('');
 	const userEmail = useSelector((state) => state.user.email); 
 	const top5 = useSelector((state) => state.top5.top5); 
+	const dispatch = useDispatch();
+	const [currImg, setCurrImg]=useState(0);
+	
+	const [currArtistt,setCurrArtistt]=useState(artists[currImg])
 	//const top5 = ["holi", 'chau'];
 	useEffect(() => {
 	  getToken();
@@ -51,7 +61,7 @@ const Home = () => {
 	  const artistID = await fetch('https://api.spotify.com/v1/search?q=' + search + "&type=artist" +"&limit=5", searchParameters)
 		.then(res => res.json())
 		.then(data => {
-			console.log(data); 
+			//console.log(data); 
 			setArtistID(data.artists.items[0].id); 
 			return data.artists.items[0].id; })
   
@@ -94,7 +104,7 @@ const Home = () => {
 		  });
   
 	  })
-	  console.log(albums);
+	  //console.log(albums);
 	  /*  console.log(Object.values(
 		 albums.filter((v: Albums, i: Number, s: Albums[]) => s.findIndex((v2: Albums) => ['name'].every((k: string) => v2[k] === v[k])) === i))); */
 	}
@@ -108,7 +118,7 @@ const Home = () => {
 		  "Authorization": "Bearer " + token,
 		}
 	  }
-	  const artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchArtist + "&type=artist"+"&limit=10", searchParameters)
+	  const artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchArtist + "&type=artist"+"&limit=5", searchParameters)
 		.then(res => res.json())
 		.then(data => {
 			 setArtists(data.artists.items.filter((artist)=>artist.images.length>0).map((artist) => ({ id: artist.id, name: artist.name, url:  artist.images[0].url , genres:artist.genres,followers:artist.followers.total })));
@@ -121,6 +131,34 @@ const Home = () => {
 	
 	
   }
+
+  const carrouselLeft= () =>{
+	if(currImg!==0){
+		setCurrImg(currImg-1)
+		//setCurrArtistt(artists[currImg])
+	}if(currImg===0){
+		setCurrImg(3)
+		//setCurrArtistt(artists[currImg])
+	}
+	
+
+  }
+
+  const carrouselRight= () =>{
+	if(currImg!==3){
+		
+	setCurrImg(currImg+1)
+	//console.log(currImg)
+	//setCurrArtistt(artists[currImg])
+	}if(currImg===3){
+		setCurrImg(0)
+	//setCurrArtistt(artists[currImg])
+	}
+	
+
+  }
+  
+  
   
   
   
@@ -130,61 +168,77 @@ const Home = () => {
 	return (
 	  <div>
 		
-		<div className='container'>
-		{/* <input type="text" value={search} onChange={e => setSearch(e.target.value)} />
-		<button onClick={serch}>search</button> */}
-		<input placeholder='choose your artist to make your top 5' type="text" value={searchArtist} onChange={e => setSearchArtist(e.target.value)} />
-		<button onClick={serchArtist}>Artistas</button>
+		<div className='top5_container'>
+		<StatusSongs/>
+		<h4>Choose your Artist</h4>
+		<div className="top5_sep">
+		<input placeholder='choose your artist' type="text" value={searchArtist} onChange={e => setSearchArtist(e.target.value)} />
+		<button onClick={serchArtist}>Search</button>
+		</div>
 		
-		{/* <button onClick={songi}>songs</button> */}
 		
 		</div>
 		{userEmail}
 		{top5.map(i=>
-			<div className="asd" key={i.id}>{i.name}</div>
+			<div className="top5_asd" key={i.id}>{i.name}</div>
 	   )}
-		<div className="albums">
-		  {
-			albums.map((album) =>
-  
-			  <div key={album.id} >
-				<div className='pepe'>
-				<h3 >{album.name}</h3>
-				<img onClick={songi} src={album.url} alt="" width={400} height={400} />
-				<button ><Link className="link" to={"/AlbumDetail/"+artistID+'-'+album.id}>Ver Detalle</Link></button>
-				</div>	
-				<div className="">
-				  {album.songs && album.songs.map((song) =>
-					<div key={song.id} className="songs">
-					  <p>{song.name}</p>
-					  <button onClick={() => console.log(song)}>+</button>
-  
-  
-					</div>
-				  )}
+	   { artists.length>0 ? 
+	   <div className='top5_subcontainer'>
+		<h3 >{artists[currImg].name}</h3>
+		<div className="top5_carrousel">
+			 <div className='top5_carrouselInner' 
+			style={{backgroundImage:`url(${artists[currImg].url})`}}>
+				<div className="left" onClick={carrouselLeft}>
+					<ArrowBackIosIcon onClick={carrouselLeft}
+					/>
 				</div>
-			  </div>
-  
-  
-			)}
+				<div className="center"></div>
+				<div className="right" onClick={carrouselRight}>
+				<ArrowForwardIosIcon onClick={carrouselRight}/>
+				
+				</div>
+				
+				
+				 </div> 
+				
+				
+
 		</div>
+
+		<div className="top5_circulos">
+		{[0,1,2,3].map(i=>
+			<div key={i}>
+			{i===currImg ? 
+				
+			<Brightness1Icon style={{color:"rgb(26, 23, 23, 0.6)"}} />
+			:	<Brightness1Icon style={{color:"rgb(26, 23, 23, 0.2)"}} />}	
+			</div>
+		)
 		
-		<div className="albums">
+		}
+		
+
+		</div>
+		<button className="top5_link" onClick={()=>{  dispatch(currArtist(artists[currImg]));dispatch(changeStatus(1)) }} ><Link  to={"/Artist/"+artists[currImg].id}   >Discografia</Link></button>
+			
+		</div>:<div>Busca el artista</div> }
+		
+		{/* <div className="top5_albums">
 		  {
 			artists.map((artist) =>
   
 			  <div key={artist.id} >
-				<div className='pepe'>
+				<div className='top5_pepe'>
 				<h3 >{artist.name}</h3>
 				<img  src={artist.url} alt="" width={400} height={400} />
-				<button /* onClick={()=>console.log(artist)} */><Link className="link" to={"/Artist/"+artist.id} state={{artist}}>Discografia</Link></button>
+				<button onClick={()=>  dispatch(currArtist(artist))} ><Link className="top5_link" to={"/Artist/"+artist.id} state={{artist}}>Discografia</Link></button>
 				</div>	
 				
 			  </div>
   
   
 			)}
-		</div>
+		</div> */}
   
 	  </div>
 	);

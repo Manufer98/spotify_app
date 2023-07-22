@@ -1,3 +1,4 @@
+import FlippableCard from "./FlippableCard";
 import "./Home.css";
 
 const Home = () =>{
@@ -9,10 +10,11 @@ const Home = () =>{
 			
 			</div>
 			<div className="home_gridi">
-				<div className="home_one">
+				<FlippableCard/>
+				{/* <div className="home_one">
 				holi
 				</div>
-				<div className="home_dos">holi</div>
+				<div className="home_dos">holi</div> */}
 			</div>
 			
 			

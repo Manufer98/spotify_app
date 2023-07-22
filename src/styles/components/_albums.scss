@@ -1,0 +1,56 @@
+.albums_subcontainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+
+.albums_carrousel {
+	height: 400px;
+	width: 400px;
+	/* background-color: rgb(255, 255, 255); */
+	margin-bottom: 10px;
+
+}
+
+.albums_carrouselInner {
+	height: 100%;
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+
+
+	.left {
+		flex: 1%;
+		height: 100%;
+		background-color: rgb(26, 23, 23, 0.2);
+		display: grid;
+		place-items: center;
+		cursor: pointer;
+	}
+
+	.center {
+		flex: 98%;
+		height: 100%;
+
+	}
+
+	.right {
+		flex: 1%;
+		background-color: rgb(26, 23, 23, 0.2);
+		cursor: pointer;
+		display: grid;
+		place-items: center;
+
+	}
+
+
+}
+
+.albums_statuscon {
+	display: flex;
+	justify-content: center;
+}

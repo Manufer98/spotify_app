@@ -5,14 +5,14 @@ import Brightness1Icon from '@mui/icons-material/Brightness1';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
 import { AddTop5Redux, changeStatus } from '../redux/top5Sclice';
+
 import "./ArtistDetail.css";
 import Songs from './Songs';
 import StatusSongs from './StatusSongs';
 const ArtistDetail = () => {
 
-	const [showFront,setShowFront]=useState(true);
+	
 	const ClientId = '186edb51b04148d99e7c55ed02ebc0fa';
 	const ClientSecret = '24db6b43a228490f81bdada8879ec536';
 	const [albums, setAlbums] = useState([]);
@@ -26,30 +26,21 @@ const ArtistDetail = () => {
 	const top5 = useSelector((state) => state.top5.top5); 
 	const currArtist = useSelector((state) => state.top5.currentArtist); 
 	const dispatch = useDispatch();
-	const [selected,setSelected]=("card_songs");
-
 	useEffect(() => {
 		getToken();
 		
 		setArtist(currArtist);
-
-
 		
 
-		/* return () => {
+		return () => {
 			dispatch(changeStatus(0))
-		} */
+		  }
 	  }, []);
 
 	  useEffect(() => {
 	
-		const root = document.documentElement;
-		root?.style.setProperty("--margin-songs",currAlbum.songs ? (currAlbum.songs.length*80)+'px' : "0px");
-		//console.log(currAlbum.songs.length);
-	/* 	console.log((currAlbum.songs.length*80)+'px'); */
-		searchSongs();
 		
-
+		searchSongs();	
 	  }, [currAlbumPoss]);
 
 	   useEffect(() => {
@@ -150,36 +141,29 @@ const ArtistDetail = () => {
 		
 		 
 
-		
+		console.log(currAlbum.id);
 		 const songs=await fetch('https://api.spotify.com/v1/albums/' + currAlbum.id + '/tracks', searchParameters);
 
 		 const a=await songs.json();
 		 currAlbum.songs =await a.items.map((song) => ({ name: song.name, id: song.id, album: { albumName: currAlbum.name, albumId: currAlbum.id } }));
 		 setCurrAlbum(currAlbum);
 		
-		 
+		 /*fetch('https://api.spotify.com/v1/albums/' + currAlbum.id + '/tracks', searchParameters)
+		 .then((respose)=>respose.json())
+		 .then((data)=>{
+			currAlbum.songs =data.items.map((song) => ({ name: song.name, id: song.id, album: { albumName: currAlbum.name, albumId: currAlbum.id } }));
+			setCurrAlbum(currAlbum);
+
+		});*/
 		 
 		
 
 	
 	  } 
 
-	  const handleSelected = (name) =>{
-		 
-		
-		if(top5.some(i=>i.name===name)){
-			return "card_songs_selected"
-		}else{
-			return "card_songs";
-		}
-
-		console.log(name,top5)
-		;
-	  }
-
 	  
 	  const handleTop5 = (song)=>{
-		
+
 		const songi={
 			id:song.id,
 			name:song.name
@@ -189,9 +173,7 @@ const ArtistDetail = () => {
        // navigate('/Artist/'+artist.id);
 	  }
 
-	//console.log(currAlbum);
-
-
+	console.log(currAlbum);
   return (
 
 	<>
@@ -205,125 +187,17 @@ const ArtistDetail = () => {
 	<button onClick={()=>setView('albums')}>Albums</button>
 	<button onClick={()=>setView('songs')}>Songs</button>
 	
-	  
-	  <button> <Link onClick={()=> top5.length===5 && dispatch(changeStatus(2))} className="link" to={top5.length===5?"/OrderSongs":''} >Next</Link> </button>
+	  <h3 >{currAlbum.name}</h3> 
 	</div>
-	{/* {top5.map(i=>
+	{top5.map(i=>
 			<div className="asd" key={i.id}>{i.name}</div>
-	   )} */}
+	   )}
 	{ 
 	
 	view === "albums" ?
 		<>
-		<h3 >{currAlbum.name}</h3> 
+		
 		<div className='albums_subcontainer'>
-		<div className='flippable_container'>
-		<CSSTransition
-			in={showFront}
-			timeout={300}
-			classNames='flip'
-		>
-		{/* <Card onClick={()=>{
-			setShowFront((v)=>!v);
-			
-
-		}}/> */}
-		<div className='card_container' >
-		<div className="card_front">
-		<div className='albums_subcontainer'>
-		<div className="albums_carrousel">
-			 <div className='albums_carrouselInner' 
-				style={{backgroundImage:`url(${currAlbum.url})`}}>
-					<div className="left" onClick={carrouselLeft}>
-					<ArrowBackIosIcon onClick={carrouselLeft}
-					/>
-				</div>
-				<div className="center"></div>
-				<div className="right" onClick={carrouselRight}>
-				<ArrowForwardIosIcon onClick={carrouselRight}/>
-				
-				</div>
-				
-				
-				 </div> 
-				
-				
-
-			</div> 
-			<div className="top5_circulos">
-		{arrayCiruculos.map(i=>
-			<div key={i}>
-			{i===currAlbumPoss ? 
-				
-			<Brightness1Icon style={{color:"rgb(26, 23, 23, 0.6)"}} />
-			:	<Brightness1Icon onClick={()=>handleCirculo(i)} style={{color:"rgb(26, 23, 23, 0.2)",cursor:"pointer"}} />}	
-			</div>
-		)
-		
-		}
-	
-
-		</div>
-		<button onClick={()=>{
-			
-			setShowFront((v)=>!v);
-			const formula=(currAlbum.songs.length*80)+'px';
-			const root = document.documentElement;
-			root?.style.setProperty("--margin-songs",currAlbum.songs ? formula  : "0px");
-			//console.log(currAlbum.songs.length)
-
-		}}>View Songs</button>
-		</div>
-		
-		</div>
-		
-		<div className="card_back">
-			<div className="card_back_container">
-				<div className="card_back_title">
-				<h5>Songs {currAlbum.name}</h5>
-				</div>
-			{currAlbum.songs && currAlbum.songs.map(song=>
-			
-			<div key={song.id} className={handleSelected(song.name)}>
-
-					 	<p className='name'>{song.name}</p>
-						
-					  <button className='plus' onClick={()=> handleTop5(song)}>+</button>
-					  <button className='minus' onClick={()=> handleTop5(song)}>-</button>
-					  
-  
-  
-					</div>) }
-					<div className='card_back_back'>
-					<button  onClick={()=>{
-			setShowFront((v)=>!v);
-			
-
-		}}>Back to albums</button>
-					</div>
-					
-			</div>
-			<div>
-			
-			
-			</div>
-
-		</div>
-		
-		
-		
-		
-	</div>
-
-		</CSSTransition>
-		</div>
-		
-	
-	</div>
-
-	
-	
-		{/* <div className='albums_subcontainer'>
 	
 		 <div className="albums_carrousel">
 			 <div className='albums_carrouselInner' 
@@ -369,7 +243,7 @@ const ArtistDetail = () => {
   
 					</div>
 				  ) : <>loading</>}
-				</div> */}
+				</div>
 		
 		
 		
