@@ -5,19 +5,21 @@
 $marginSongs: var(--margin-songs);
 
 .flippable_container {
-	height: 500px;
+	height: 510px;
 	width: 400px;
+
 	perspective: 1000px;
+	background-color: rgb(255, 255, 255);
+
 }
 
 .card_container {
 	height: 100%;
 	width: 100%;
-
 	transform-style: preserve-3d;
 
 	/* Content Alignment */
-	position: relative;
+	/* position: relative; */
 
 	/* Styling */
 	border-radius: 5px;
@@ -29,16 +31,20 @@ $marginSongs: var(--margin-songs);
 
 }
 
-.card_front,
-.card_back {
-	height: 100%;
-	width: 100%;
+.papa {
+	/* background-color: red; */
+}
+
+.card_front {
+
 
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 
 	/* Alignment */
-	position: absolute;
+	/* position: absolute; */
+	z-index: 99;
+	position: fixed;
 
 	/* Content Alignment */
 	display: flex;
@@ -60,23 +66,92 @@ $marginSongs: var(--margin-songs);
 }
 
 .card_back {
-	background-color: rgb(252, 164, 0);
+
+	height: 500px;
+	width: 100%;
+	background-color: rgb(184, 176, 162);
 	transform: rotateY(180deg);
-	overflow: auto;
+	overflow: scroll;
+	overflow-x: hidden;
+	/* 
+	display: flex;
+	justify-content: center;
+	align-items: stretch; */
 
 
+
+
+	font-size: 15px;
+	color: white;
+	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9)
+}
+
+.card_back::-webkit-scrollbar {
+	width: 10px;
+}
+
+.card_back::-webkit-scrollbar-track {
+	border-radius: 8px;
+	background-color: #e7e7e7;
+	border: 1px solid #cacaca;
+}
+
+.card_back::-webkit-scrollbar-thumb {
+	border-radius: 8px;
+	background-color: #8b8b8b;
+}
+
+.card_back_container {
+	/* margin-top: $marginSongs; */
+
+
+
+}
+
+.leftt {
+
+	height: 30px;
+	/* background-color: rgba(128, 128, 128, 0.2); */
+
+	cursor: pointer;
+
+}
+
+
+
+.rightt {
+
+	/* background-color: rgba(128, 128, 128, 0.2); */
+
+	height: 30px;
+
+	cursor: pointer;
+
+
+}
+
+.arrows {
+	display: flex;
+	position: absolute;
+	gap: 10px;
+	left: 300px;
+	right: 0px;
+	bottom: 0px;
+	top: 35px;
+	height: 40px;
+	width: 60px;
+	/* background-color: red; */
 }
 
 .card_songs {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 90%;
-
+	width: 93%;
+	/* background-color: red; */
 	gap: 1rem;
 	margin-bottom: 20px;
 	padding: 10px;
-
 
 	.name {
 
@@ -84,9 +159,15 @@ $marginSongs: var(--margin-songs);
 
 	}
 
-	.plus {}
+	.plus {
+		flex: 5%;
 
-	.minus {}
+	}
+
+	.minus {
+		flex: 5%;
+	}
+
 
 }
 
@@ -94,14 +175,16 @@ $marginSongs: var(--margin-songs);
 
 .card_songs_selected {
 	display: flex;
-
 	justify-content: space-between;
 	align-items: center;
-	background-color: red;
+	width: 93%;
+
 	gap: 1rem;
 	margin-bottom: 20px;
-	flex: 90;
 	padding: 10px;
+
+	background-color: rgb(25, 0, 255);
+
 
 
 	.name {
@@ -137,17 +220,17 @@ $marginSongs: var(--margin-songs);
 
 }
 
-.card_back_container {
-	/* margin-top: $marginSongs; */
 
-	margin-top: 550px;
-}
 
 .card_back_title {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	text-align: justify;
+	padding-right: 120px;
+	gap: 20px;
 	font-size: 20px;
+	padding-left: 10px;
+	color: #ffffff;
 }
 
 .card_back_items {

@@ -1,0 +1,191 @@
+.login_Login {
+	padding-top: 100px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	padding-bottom: 20px;
+	height: 75.7 vh;
+	background-image: linear-gradient(to right, #8360c3, #2ebf91);
+}
+
+
+
+.login_box {
+
+	h3 {
+		text-align: center;
+	}
+
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	background-color: rgb(254, 238, 238);
+	/* height: 600px;
+	width: 300px; */
+	margin-top: 60px;
+	padding-top: 20px;
+	padding-left: 70px;
+	padding-right: 70px;
+	padding-bottom: 70px;
+	border-radius: 20px;
+}
+
+.login_buttons {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+
+
+	justify-content: center;
+	margin-bottom: 50px;
+}
+
+.login_signUp {
+	text-align: center;
+}
+
+$primary: #6ad2c9;
+$secondary: #38ef7d;
+$white: #272727;
+$gray: #000000;
+
+.form__group {
+	position: relative;
+	padding: 15px 0 0;
+
+
+}
+
+.form__field {
+	font-family: inherit;
+	width: 100%;
+	border: 0;
+	border-bottom: 2px solid $gray;
+	outline: 0;
+	font-size: 1.3rem;
+	color: $white;
+	padding: 7px 0;
+	background: transparent;
+	transition: border-color 0.2s;
+
+	&::placeholder {
+		color: transparent;
+	}
+
+	&:placeholder-shown~.form__label {
+		font-size: 1.3rem;
+		cursor: text;
+		top: 20px;
+	}
+}
+
+
+.form__label {
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1rem;
+	color: $gray;
+}
+
+.form__field:focus {
+	~.form__label {
+		position: absolute;
+		top: 0;
+		display: block;
+		transition: 0.2s;
+		font-size: 1rem;
+		color: $primary;
+		font-weight: 700;
+	}
+
+	padding-bottom: 6px;
+	/* font-weight: 700; */
+	border-width: 3px;
+	border-image: linear-gradient(to right, $primary, $secondary);
+	border-image-slice: 1;
+}
+
+/* reset input */
+.form__field {
+
+	&:required,
+	&:invalid {
+		box-shadow: none;
+	}
+}
+
+/* demo */
+
+.form__group2 {
+	@extend .form__group;
+	/* position: relative;
+	padding: 15px 0 0; */
+
+
+}
+
+.form__field2 {
+	@extend .form__field;
+	/* font-family: inherit;
+	width: 100%;
+	border: 0;
+	border-bottom: 2px solid $gray;
+	outline: 0;
+	font-size: 1.3rem;
+	color: $white;
+	padding: 7px 0;
+	background: transparent;
+	transition: border-color 0.2s;
+
+	&::placeholder {
+		color: transparent;
+	} */
+
+	&:placeholder-shown~.form__label2 {
+		font-size: 1.3rem;
+		cursor: text;
+		top: 20px;
+	}
+}
+
+
+.form__label2 {
+	@extend .form__label;
+	/* position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1rem;
+	color: $gray; */
+}
+
+.form__field2:focus {
+	~.form__label2 {
+		position: absolute;
+		top: 0;
+		display: block;
+		transition: 0.2s;
+		font-size: 1rem;
+		color: $primary;
+		font-weight: 700;
+	}
+
+	padding-bottom: 6px;
+	/* font-weight: 700; */
+	border-width: 3px;
+	border-image: linear-gradient(to right, $primary, $secondary);
+	border-image-slice: 1;
+}
+
+/* reset input */
+.form__field2 {
+
+	&:required,
+	&:invalid {
+		box-shadow: none;
+	}
+}

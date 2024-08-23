@@ -1,0 +1,48 @@
+.signUp_Login {
+	@extend .login_Login;
+
+	height: 75.7vh;
+
+}
+
+
+
+.signUp_box {
+
+	@extend .login_box;
+
+	/* h3 {
+		text-align: center;
+	}
+
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	background-color: rgb(254, 238, 238);
+	/* height: 600px;
+	width: 300px; 
+	margin-top: 60px;
+	padding-top: 20px;
+	padding-left: 70px;
+	padding-right: 70px;
+	padding-bottom: 70px;
+	border-radius: 20px; */
+}
+
+.signUp_buttons {
+	@extend .login_buttons;
+
+
+	/* margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+
+
+	justify-content: center;
+	margin-bottom: 50px; */
+
+}
+
+.signUp_signUp {
+	text-align: center;
+}

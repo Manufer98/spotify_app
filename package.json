@@ -19,6 +19,7 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
+    "react-responsive-pagination": "^2.5.0",
     "react-transition-group": "^4.4.5",
     "redux": "^4.2.1",
     "sass": "^1.62.1"
@@ -27,6 +28,11 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.1",
+    "prettier": "^3.0.1",
     "vite": "^4.2.0"
   }
 }
