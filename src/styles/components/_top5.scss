@@ -1,5 +1,4 @@
 .top5_container {
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -7,8 +6,6 @@
 	padding: 50px;
 	height: 10px;
 	padding-top: 150px;
-	/* background-color: rgb(228, 206, 250); */
-
 }
 
 .top5_sep {
@@ -40,13 +37,14 @@
 	display: flex;
 
 
+
 	.left {
-		flex: 1%;
+		flex: 4%;
 		height: 100%;
-		background-color: rgb(26, 23, 23, 0.2);
+		background-color: rgba(128, 128, 128, 0.2);
 		display: grid;
 		place-items: center;
-
+		justify-items: end;
 		cursor: pointer;
 
 	}
@@ -58,12 +56,12 @@
 	}
 
 	.right {
-		flex: 1%;
+		flex: 4%;
 		height: 100%;
-		background-color: rgb(26, 23, 23, 0.2);
+		background-color: rgba(128, 128, 128, 0.2);
 		display: grid;
 		place-items: center;
-
+		/* justify-items: end; */
 
 		cursor: pointer;
 

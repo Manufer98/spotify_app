@@ -1,25 +1,24 @@
-import FlippableCard from "./FlippableCard";
 import "./Home.css";
+import React from "react";
+import Top5Card from "./Top5Card";
 
-const Home = () =>{
+const Home = () => {
+  return (
+    <div className="home_container">
+      <div className="home_image_container">
+        <img
+          className="rosalia"
+          src="https://cdn.getcrowder.com/images/1678708868669-null-main.jpeg"
+          alt=""
+        />
+      </div>
+      <h3>Your Tops</h3>
 
-	return(
-		<div className="home_cc">
-			<div className="home_image-container">
-			<img className="rosalia" src="https://cdn.getcrowder.com/images/1678708868669-null-main.jpeg" alt="" />
-			
-			</div>
-			<div className="home_gridi">
-				<FlippableCard/>
-				{/* <div className="home_one">
-				holi
-				</div>
-				<div className="home_dos">holi</div> */}
-			</div>
-			
-			
-		</div>
-	)
-}
+      <div className="home_grid">
+        <Top5Card />
+      </div>
+    </div>
+  );
+};
 
 export default Home;

@@ -1,4 +1,4 @@
-.home_cc {
+.home_container {
 
 	display: flex;
 	align-items: center;
@@ -11,7 +11,7 @@
 
 }
 
-.home_image-container {
+.home_image_container {
 	width: 99.99999999%;
 	height: 300px;
 	overflow: hidden;
@@ -26,13 +26,15 @@
 }
 
 
-.home_gridi {
+.home_grid {
 	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	gap: 20px;
+
+
+
 	width: 100%;
+	gap: 20px;
+
+	background-color: rgb(118, 101, 101);
 
 }
 

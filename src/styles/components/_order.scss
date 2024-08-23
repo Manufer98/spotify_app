@@ -3,4 +3,54 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+
+}
+
+.order_picture {
+	height: 300px;
+	width: 300px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+
+.order_songs {
+	padding-top: 20px;
+	background-color: rgb(255, 255, 255);
+	width: 500px;
+
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	gap: 10px;
+	padding-bottom: 30px;
+
+}
+
+.order_song {
+	background-color: rgb(149, 149, 149);
+	height: 40px;
+	display: flex;
+
+
+	justify-content: space-between;
+	width: 100%;
+
+
+}
+
+.order_icon {
+
+	margin-left: 10px;
+	margin-right: 20px;
+
+
+}
+
+.order_test {
+	display: flex;
+	align-items: center;
 }

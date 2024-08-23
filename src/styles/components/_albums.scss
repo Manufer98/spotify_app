@@ -1,15 +1,26 @@
+.albums_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
 .albums_subcontainer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	background-color: rgb(0, 0, 0);
+	width: 400px;
+	gap: 5px;
+
+
 }
 
 
 .albums_carrousel {
 	height: 400px;
 	width: 400px;
-	/* background-color: rgb(255, 255, 255); */
 	margin-bottom: 10px;
 
 }
@@ -23,27 +34,34 @@
 	display: flex;
 
 
+
 	.left {
-		flex: 1%;
+		flex: 4%;
 		height: 100%;
-		background-color: rgb(26, 23, 23, 0.2);
+		background-color: rgba(128, 128, 128, 0.2);
 		display: grid;
 		place-items: center;
+		justify-items: end;
 		cursor: pointer;
+
 	}
 
 	.center {
-		flex: 98%;
+		flex: 80%;
 		height: 100%;
 
 	}
 
 	.right {
-		flex: 1%;
-		background-color: rgb(26, 23, 23, 0.2);
-		cursor: pointer;
+		flex: 4%;
+		height: 100%;
+		background-color: rgba(128, 128, 128, 0.2);
 		display: grid;
 		place-items: center;
+
+
+		cursor: pointer;
+
 
 	}
 
@@ -53,4 +71,5 @@
 .albums_statuscon {
 	display: flex;
 	justify-content: center;
+
 }

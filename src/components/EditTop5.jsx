@@ -16,7 +16,7 @@ import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
 import StatusSongs from "./StatusSongs";
 
-const ArtistDetail = () => {
+const EditTop5 = () => {
   const [showFront, setShowFront] = useState(true);
   const ClientId = "186edb51b04148d99e7c55ed02ebc0fa";
   const ClientSecret = "24db6b43a228490f81bdada8879ec536";
@@ -164,16 +164,10 @@ const ArtistDetail = () => {
     }
   };
 
-  const handleAddTop5 = (song, currAlbum) => {
-    const { name, id, url } = currAlbum;
-
+  const handleAddTop5 = (song) => {
     const songi = {
-      songId: song.id,
+      id: song.id,
       name: song.name,
-      albumName: name,
-      albumId: id,
-      albumUrl: url,
-      currAlbum,
     };
 
     dispatch(AddTop5Redux(songi));
@@ -192,12 +186,12 @@ const ArtistDetail = () => {
   return (
     <>
       <div className="coni">
+        Edit
         <div className="albums_statuscon">
           <StatusSongs />
         </div>
         <button onClick={() => setView("albums")}>Albums</button>
         <button onClick={() => setView("songs")}>Songs</button>
-
         <button>
           {" "}
           <Link
@@ -283,7 +277,7 @@ const ArtistDetail = () => {
 
                               <button
                                 className="plus"
-                                onClick={() => handleAddTop5(song, currAlbum)}
+                                onClick={() => handleAddTop5(song)}
                               >
                                 +
                               </button>
@@ -321,4 +315,4 @@ const ArtistDetail = () => {
   );
 };
 
-export default ArtistDetail;
+export default EditTop5;
