@@ -2,6 +2,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
 const AddTop5Action = ({ top5 }, payload) => {
+
 	if (top5.length < 5) {
 		top5.push(payload);
 		localStorage.setItem("top5", JSON.stringify(top5));
@@ -9,12 +10,14 @@ const AddTop5Action = ({ top5 }, payload) => {
 };
 
 const MinusTop5Action = ({ top5 }, payload) => {
-	const index = top5.findIndex(i => i.id === payload.id);
 
-	if (index !== -1) {
+	const { songId } = payload;
+	const exist = top5.some(i => i.songId === songId)
+	const index = top5.findIndex(i => i.songId === songId);
+
+	if (index !== -1 && exist) {
 		top5.splice(index, 1);
 		localStorage.setItem("top5", JSON.stringify(top5));
-
 	}
 
 };
@@ -37,30 +40,31 @@ const ReorderTop5Action = ({ top5 }, { desI, srcI }) => {
 
 };
 
-const AddTop5sAction = ({ top5, top5s }, { id, url, name }) => {
+const AddTop5sAction = ({ top5, top5s }, { id, url, name, currArtist }) => {
 
 	const exists = top5s.some((top5) => top5.id === id);
 
 	if (!exists) {
-
 		const artist = {
 			id,
 			url,
 			name,
+			currArtist,
 			top5: current(top5),
 
 		}
 		top5s.push(artist);
 		localStorage.setItem("top5s", JSON.stringify(top5s));
-		console.log(current(top5s));
+	} else {
+		const index = top5s.findIndex(i => i.id === id);
+		top5s[index].top5 = current(top5)
+		localStorage.setItem("top5s", JSON.stringify(top5s));
 	}
-
 
 };
 
 const CurrArtistAction = (state, { currArtist }) => {
 
-	//console.log('holi', currArtist)
 	state.currentArtist = currArtist;
 	console.log(state.currentArtist, currArtist)
 
@@ -76,6 +80,14 @@ const DeleteTop5Action = (state, payload) => {
 	state.top5s = a;
 	console.log(payload, a)
 
+
+}
+
+const EditTop5Action = (state, payload) => {
+
+	state.top5 = payload.top5;
+	localStorage.setItem("top5", JSON.stringify(payload.top5));
+	//console.log(state.top5, payload.top5)
 
 }
 
@@ -114,6 +126,9 @@ export const top5Slice = createSlice({
 		DeleteTop5Redux: (state, action) => {
 			DeleteTop5Action(state, action.payload);
 		},
+		EditTop5Redux: (state, action) => {
+			EditTop5Action(state, action.payload);
+		},
 	},
 });
 
@@ -125,7 +140,8 @@ export const {
 	AddTop5sRedux,
 	MinusTop5Redux,
 	currArtistRedux,
-	DeleteTop5Redux
+	DeleteTop5Redux,
+	EditTop5Redux
 } = top5Slice.actions;
 
 export default top5Slice.reducer;

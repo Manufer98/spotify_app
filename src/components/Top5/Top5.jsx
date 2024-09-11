@@ -9,11 +9,12 @@ import {
   changeStatus,
   clearTop5Redux,
   currArtistRedux,
-} from "../redux/top5Sclice";
+} from "../../redux/top5Sclice";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
-import StatusSongs from "./StatusSongs";
-import "./Top5.css";
+import StatusSongs from "../StatusSongs";
+import { GetArtists } from "../../spotify/Spotify";
+
 const Home = () => {
   const ClientId = "186edb51b04148d99e7c55ed02ebc0fa";
   const ClientSecret = "24db6b43a228490f81bdada8879ec536";
@@ -27,14 +28,15 @@ const Home = () => {
   const userEmail = useSelector((state) => state.user.email);
   const top5 = useSelector((state) => state.top5.top5);
   const dispatch = useDispatch();
+
   const [currImg, setCurrImg] = useState(1);
 
   /*  const [currArtistt, setCurrArtistt] = useState(artists[currImg]); */
-  useEffect(() => {
+  /*  useEffect(() => {
     getToken();
-  }, [albums]);
+  }, [albums]); */
 
-  const getToken = async () => {
+  /* const getToken = async () => {
     const authParameters = {
       method: "POST",
       headers: {
@@ -50,9 +52,9 @@ const Home = () => {
     fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((res) => res.json())
       .then((data) => setToken(data.access_token));
-  };
+  }; */
 
-  const search = async () => {
+  /*const search = async () => {
     const searchParameters = {
       method: "GET",
       headers: {
@@ -74,7 +76,7 @@ const Home = () => {
         return data.artists.items[0].id;
       });
 
-    const albumss = await fetch(
+    /* const albumss = await fetch(
       "https://api.spotify.com/v1/artists/" +
         artistID +
         "/albums" +
@@ -90,10 +92,10 @@ const Home = () => {
             url: artist.images[0].url,
           })),
         );
-      });
-  };
+      }); 
+  };*/
 
-  const songi = async () => {
+  /* const songi = async () => {
     const searchParameters = {
       method: "GET",
       headers: {
@@ -122,10 +124,14 @@ const Home = () => {
           setAlbums(newState);
         });
     });
-  };
+  }; */
 
   const serchArtist = async () => {
-    const searchParameters = {
+    const artist = await GetArtists(searchArtist);
+    setArtists(artist);
+    // console.log(a);
+
+    /* const searchParameters = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -152,7 +158,7 @@ const Home = () => {
               followers: artist.followers.total,
             })),
         );
-      });
+      }); */
   };
 
   const carrouselLeft = () => {
@@ -243,6 +249,7 @@ const Home = () => {
             className="top5_link"
             onClick={() => {
               const currArtist = artists[currImg - 1];
+              console.log(currArtist);
               dispatch(currArtistRedux({ currArtist }));
 
               dispatch(changeStatus(1));
