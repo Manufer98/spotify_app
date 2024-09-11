@@ -1,13 +1,11 @@
-import "./Home.css";
 import React from "react";
-import Top5Card from "./Top5Card";
+import Top5sCards from "../Top5s/Top5sCards";
 
 const Home = () => {
   return (
     <div className="home_container">
       <div className="home_image_container">
         <img
-          className="rosalia"
           src="https://cdn.getcrowder.com/images/1678708868669-null-main.jpeg"
           alt=""
         />
@@ -15,7 +13,7 @@ const Home = () => {
       <h3>Your Tops</h3>
 
       <div className="home_grid">
-        <Top5Card />
+        <Top5sCards />
       </div>
     </div>
   );

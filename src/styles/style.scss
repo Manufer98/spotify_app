@@ -1,10 +1,10 @@
-@import './components/home';
+@import '../components/Home/home';
 @import './components/songs';
-@import './components/top5';
+@import '../components/Top5/top5';
 @import './components/albums';
 @import './components/status';
-@import './components/flippableCard';
+@import '../components/FlippableCard/flippableCard';
 @import './components/order';
-@import './components/top5Card';
-@import './components/login';
-@import './components/singUp';
+@import '../components/Top5s/top5Card';
+@import '../components/Login/login';
+@import '../components/Login/singUp';

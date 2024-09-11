@@ -3,7 +3,7 @@ import React from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import DehazeIcon from "@mui/icons-material/Dehaze";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   ReorderTop5Redux,
   changeStatus,
@@ -18,7 +18,6 @@ const OrderSongs = () => {
   const dispatch = useDispatch();
   const top5 = useSelector((state) => state.top5.top5);
   const navigate = useNavigate();
-  console.log(currArtist);
 
   const SaveTop5 = () => {
     const id = currArtist.id;
@@ -31,9 +30,8 @@ const OrderSongs = () => {
       name,
       top5,
     };
-    console.log(top54);
 
-    dispatch(AddTop5sRedux({ id, url, name }));
+    dispatch(AddTop5sRedux({ id, url, name, currArtist }));
     navigate("/");
   };
 
@@ -69,6 +67,7 @@ const OrderSongs = () => {
         </Link>{" "}
       </button>
       <button onClick={SaveTop5}> Save </button>
+      <button onClick={asd}> id </button>
       <div
         className="order_picture"
         style={{ backgroundImage: `url(${currArtist.url})` }}
